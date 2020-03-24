@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QListWidget, QPushButton, QLabel, QListWidgetItem, Q
 from PyQt5.QtGui import QPixmap, QIntValidator, QFont, QGuiApplication
 #from PyQt5.QtCore import 
 
-from PyPIV_FFT import PyPIV_FFT
+#from PyPIV_FFT import PyPIV_FFT
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
