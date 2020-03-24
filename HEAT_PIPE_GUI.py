@@ -22,7 +22,7 @@ from matplotlib.figure import Figure
 #this is the main class which everything runs from
 #contains the QApplication to exectue
 #also creates the main window of the program
-class PIV_GUI():
+class HEAT_PIPE_GUI():
     def __init__(self):
         #all of this is just laying out the window
         app = QApplication([])
@@ -43,31 +43,36 @@ class PIV_GUI():
         
         #checking masks files
         self.mask = checkBox('Masks option', window)
-        self.mask.mover(500,220)
+        self.mask.mover(500,320)
         
         #straddling Boolean
         self.straddle = checkBox('Straddling', window)
-        self.straddle.mover(400,220)
+        self.straddle.mover(400,320)
         
         #laying out numberical input objects
-        self.windowSize = inputBox('Window Size',window)
-        self.windowSize.move(400,25)
-        self.windowSize.title.move(400,10)
-        self.windowSize.setFont(self.font)
+        self.numEvapNode = inputBox('Number of Evaporator Nodes',window)
+        self.numEvapNode.move(400,25)
+        self.numEvapNode.title.move(400,10)
+        self.numEvapNode.setFont(self.font)
         
-        self.stepSize = inputBox('Step Size',window)
-        self.stepSize.move(400,75)
-        self.stepSize.title.move(400,60)
-        self.stepSize.setFont(self.font)
+        self.numAdiaNode = inputBox('Number of Adiabatic Section Nodes',window)
+        self.numAdiaNode.move(400,75)
+        self.numAdiaNode.title.move(400,60)
+        self.numAdiaNode.setFont(self.font)
         
-        self.numImage = inputBox('Number of Image Pairs',window)
-        self.numImage.move(400,125)
-        self.numImage.title.move(400,110)
-        self.numImage.setFont(self.font)
+        self.numCondNode = inputBox('Number of Condensor Nodes',window)
+        self.numCondNode.move(400,125)
+        self.numCondNode.title.move(400,110)
+        self.numCondNode.setFont(self.font)
         
         self.imageStep = inputBox('Image Step',window)
         self.imageStep.move(400,175)
         self.imageStep.title.move(400,160)
+        self.imageStep.setFont(self.font)
+        
+        self.imageStep = inputBox('Image Step',window)
+        self.imageStep.move(400,225)
+        self.imageStep.title.move(400,210)
         self.imageStep.setFont(self.font)
         
         #run buttons
@@ -369,4 +374,4 @@ class checkBox(QRadioButton):
         
 
 if __name__ == '__main__':
-    PIV_GUI()
+    HEAT_PIPE_GUI()
