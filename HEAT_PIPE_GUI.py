@@ -27,7 +27,7 @@ class HEAT_PIPE_GUI():
         #all of this is just laying out the window
         app = QApplication([])
         window = QWidget()
-        window.setGeometry(30,100,1000,750)
+        window.setGeometry(100,100,1700,750)
         
         #create a font
         self.font = QFont('SansSerif',13)
@@ -38,66 +38,187 @@ class HEAT_PIPE_GUI():
         #creates button connected to file selection routine
         self.fileSelection = QPushButton(window)
         self.fileSelection.setText('Choose Images')
+        self.fileSelection.move(100,20)
         self.fileSelection.clicked.connect(self.fileWindow)
         self.fileSelection.setFont(self.font)
         
         #checking masks files
         self.mask = checkBox('Masks option', window)
-        self.mask.mover(500,320)
+        self.mask.mover(500,20)
         
         #straddling Boolean
         self.straddle = checkBox('Straddling', window)
-        self.straddle.mover(400,320)
-        
-        #laying out numberical input objects
+        self.straddle.mover(400,20)
+
+        # heat pipe params
+        self.pipeOD = inputBox('Heat Pipe Outer Diameter (mm)',window)
+        self.pipeOD.move(100,125)
+        self.pipeOD.title.move(100,110)
+        self.pipeOD.setFont(self.font)
+
+        self.pipeID = inputBox('Heat Pipe Inner Diameter (mm)',window)
+        self.pipeID.move(100,175)
+        self.pipeID.title.move(100,160)
+        self.pipeID.setFont(self.font)
+
+        self.vapcoreDia = inputBox('Vapor Core Diameter',window)
+        self.vapcoreDia.move(100,225)
+        self.vapcoreDia.title.move(100,210)
+        self.vapcoreDia.setFont(self.font)
+
         self.numEvapNode = inputBox('Number of Evaporator Nodes',window)
-        self.numEvapNode.move(400,25)
-        self.numEvapNode.title.move(400,10)
+        self.numEvapNode.move(100,275)
+        self.numEvapNode.title.move(100,260)
         self.numEvapNode.setFont(self.font)
-        
+
         self.numAdiaNode = inputBox('Number of Adiabatic Section Nodes',window)
-        self.numAdiaNode.move(400,75)
-        self.numAdiaNode.title.move(400,60)
+        self.numAdiaNode.move(100,325)
+        self.numAdiaNode.title.move(100,310)
         self.numAdiaNode.setFont(self.font)
         
         self.numCondNode = inputBox('Number of Condensor Nodes',window)
-        self.numCondNode.move(400,125)
-        self.numCondNode.title.move(400,110)
+        self.numCondNode.move(100,375)
+        self.numCondNode.title.move(100,360)
         self.numCondNode.setFont(self.font)
+
+        self.pipeInclination = inputBox('Heat Pipe Inclination',window)
+        self.pipeInclination.move(100,425)
+        self.pipeInclination.title.move(100,410)
+        self.pipeInclination.setFont(self.font)
+
+         #laying out wick properties
+        self.wickThickness = inputBox('Wick Thickness',window)
+        self.wickThickness.move(400,125)
+        self.wickThickness.title.move(400,110)
+        self.wickThickness.setFont(self.font)
+
+        self.wireDia = inputBox('Wire Diameter',window)
+        self.wireDia.move(400,175)
+        self.wireDia.title.move(400,160)
+        self.wireDia.setFont(self.font)
         
-        self.imageStep = inputBox('Image Step',window)
-        self.imageStep.move(400,175)
-        self.imageStep.title.move(400,160)
-        self.imageStep.setFont(self.font)
+        self.wireMeshNum = inputBox('Wire Mesh Number',window)
+        self.wireMeshNum.move(400,225)
+        self.wireMeshNum.title.move(400,210)
+        self.wireMeshNum.setFont(self.font)
         
-        self.imageStep = inputBox('Image Step',window)
-        self.imageStep.move(400,225)
-        self.imageStep.title.move(400,210)
-        self.imageStep.setFont(self.font)
+        self.wickCapilRadi = inputBox('Wick Capillary Radius',window)
+        self.wickCapilRadi.move(400,275)
+        self.wickCapilRadi.title.move(400,260)
+        self.wickCapilRadi.setFont(self.font)
         
+        self.wickPorosity = inputBox('Wick Porosity',window)
+        self.wickPorosity.move(400,325)
+        self.wickPorosity.title.move(400,310)
+        self.wickPorosity.setFont(self.font)
+        
+        self.wickCrimpFact = inputBox('Wick Crimping Factor',window)
+        self.wickCrimpFact.move(400,375)
+        self.wickCrimpFact.title.move(400,360)
+        self.wickCrimpFact.setFont(self.font)
+
+        self.wickPermeability = inputBox('Wick Permeability',window)
+        self.wickPermeability.move(400,425)
+        self.wickPermeability.title.move(400,410)
+        self.wickPermeability.setFont(self.font)
+        
+         #sodium properties
+        self.sodiumLiquidDensity = inputBox('Sodium Liquid Density',window)
+        self.sodiumLiquidDensity.move(700,125)
+        self.sodiumLiquidDensity.title.move(700,110)
+        self.sodiumLiquidDensity.setFont(self.font)
+        
+        self.sodiumLiquidViscosity = inputBox('Sodium Liquid Viscosity',window)
+        self.sodiumLiquidViscosity.move(700,175)
+        self.sodiumLiquidViscosity.title.move(700,160)
+        self.sodiumLiquidViscosity.setFont(self.font)
+        
+        self.sodiumSurfTensCoeff = inputBox('Sodium Surface Tension Coefficient',window)
+        self.sodiumSurfTensCoeff.move(700,225)
+        self.sodiumSurfTensCoeff.title.move(700,210)
+        self.sodiumSurfTensCoeff.setFont(self.font)
+        
+        self.sodiumThermCond = inputBox('Sodium Thermal Conductivity',window)
+        self.sodiumThermCond.move(700,275)
+        self.sodiumThermCond.title.move(700,260)
+        self.sodiumThermCond.setFont(self.font)
+        
+        self.sodiumLatentHeat = inputBox('Sodium Latent Heat',window)
+        self.sodiumLatentHeat.move(700,325)
+        self.sodiumLatentHeat.title.move(700,310)
+        self.sodiumLatentHeat.setFont(self.font)
+        
+        self.sodiumVaporDensity = inputBox('Sodium Vapor Density',window)
+        self.sodiumVaporDensity.move(700,375)
+        self.sodiumVaporDensity.title.move(700,360)
+        self.sodiumVaporDensity.setFont(self.font)
+        
+        self.sodiumVaporViscosity = inputBox('Sodium Vapor Viscosity',window)
+        self.sodiumVaporViscosity.move(700,425)
+        self.sodiumVaporViscosity.title.move(700,410)
+        self.sodiumVaporViscosity.setFont(self.font)
+
+
+         #conditions
+        self.operationTemp = inputBox('Operation Temperature',window)
+        self.operationTemp.move(1000,125)
+        self.operationTemp.title.move(1000,110)
+        self.operationTemp.setFont(self.font)
+        
+        self.operationPressure = inputBox('Operation Pressure',window)
+        self.operationPressure.move(1000,175)
+        self.operationPressure.title.move(1000,160)
+        self.operationPressure.setFont(self.font)
+        
+        self.sodiumSurfTensCoeff = inputBox('Sodium Surface Tension Coefficient',window)
+        self.sodiumSurfTensCoeff.move(1000,225)
+        self.sodiumSurfTensCoeff.title.move(1000,210)
+        self.sodiumSurfTensCoeff.setFont(self.font)
+        
+        self.sodiumThermCond = inputBox('Sodium Thermal Conductivity',window)
+        self.sodiumThermCond.move(1000,275)
+        self.sodiumThermCond.title.move(1000,260)
+        self.sodiumThermCond.setFont(self.font)
+        
+        self.wireDia = inputBox('Wire Diameter',window)
+        self.wireDia.move(1000,325)
+        self.wireDia.title.move(1000,310)
+        self.wireDia.setFont(self.font)
+        
+        self.wireMeshNum = inputBox('Wire Mesh Number',window)
+        self.wireMeshNum.move(1000,375)
+        self.wireMeshNum.title.move(1000,360)
+        self.wireMeshNum.setFont(self.font)        
+
+
         #run buttons
+        self.SteadyOp = QPushButton(window)
+        self.SteadyOp.setText('Steady Operation')
+        self.SteadyOp.move(100,640)
+        self.SteadyOp.clicked.connect(self.SteadyOp_run)
+        self.SteadyOp.setFont(self.font)
+
         self.Xcorr = QPushButton(window)
         self.Xcorr.setText('PIV XCorr')
-        self.Xcorr.move(20,440)
+        self.Xcorr.move(400,640)
         self.Xcorr.clicked.connect(self.Xcorr_run)
         self.Xcorr.setFont(self.font)
         
         self.CNN = QPushButton(window)
         self.CNN.setText('PIV CNN')
-        self.CNN.move(120,440)
+        self.CNN.move(700,640)
         self.CNN.clicked.connect(self.CNN_run)
         self.CNN.setFont(self.font)
-        
-        
+
         window.show()
         app.exec_()
         
         
         
     #creates window to run cross correlation from
-    def Xcorr_run(self):
-        self.Xcorr_window = QWidget()
-        self.Xcorr_window.setGeometry(200,200,500,500)
+    def SteadyOp_run(self):
+        self.SteadyOp_window = QWidget()
+        self.SteadyOp_window.setGeometry(200,200,500,500)
         
         #directory selection button
         self.outdir = QPushButton('Choose Output Directory',self.Xcorr_window)
@@ -114,12 +235,18 @@ class HEAT_PIPE_GUI():
         #brings up window
         self.Xcorr_window.show()
         
+        #display results
+        l1 = QLabel()
+        l2 = QLabel()
+        l3 = QLabel()
+        l4 = QLabel()
+	
+        l1.setText("Hello World")
+        l4.setText("TutorialsPoint")
+        l2.setText("welcome to Python GUI Programming")
+        
     def direcSelection(self):
         self.outdirec = QFileDialog.getExistingDirectory()
-        
-        
-        
-        
         
         
 #calls the FFT function with objects from the main window
