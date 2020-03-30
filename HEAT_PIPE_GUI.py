@@ -42,13 +42,13 @@ class HEAT_PIPE_GUI():
         self.fileSelection.clicked.connect(self.fileWindow)
         self.fileSelection.setFont(self.font)
         
-        #checking masks files
-        self.mask = checkBox('Masks option', window)
-        self.mask.mover(500,20)
+        #Steady Operation Option
+        self.steadyOp = checkBox('Steady Operation', window)
+        self.steadyOp.mover(400,20)
         
-        #straddling Boolean
-        self.straddle = checkBox('Straddling', window)
-        self.straddle.mover(400,20)
+        #Transient Operation Option
+        self.transOp = checkBox('Transient Operation', window)
+        self.transOp.mover(600,20)
 
         # heat pipe params
         self.pipeOD = inputBox('Heat Pipe Outer Diameter (mm)',window)
@@ -189,7 +189,7 @@ class HEAT_PIPE_GUI():
         self.wireMeshNum.move(1000,375)
         self.wireMeshNum.title.move(1000,360)
         self.wireMeshNum.setFont(self.font)        
-
+        self.wireMeshNum.insert(' Added')
 
         #run buttons
         self.SteadyOp = QPushButton(window)
@@ -221,19 +221,23 @@ class HEAT_PIPE_GUI():
         self.SteadyOp_window.setGeometry(200,200,500,500)
         
         #directory selection button
-        self.outdir = QPushButton('Choose Output Directory',self.Xcorr_window)
-        self.outdir.move(0,0)
+        self.outdir = QPushButton('Choose Output Directory',self.SteadyOp_window)
+        self.outdir.move(20,20)
         self.outdir.setFont(self.font)
         self.outdir.clicked.connect(self.direcSelection)
         
         #button to initiate FFT
-        self.fftbutton = QPushButton('Run FFT',self.Xcorr_window)
-        self.fftbutton.move(0,40)
+        self.fftbutton = QPushButton('Run FFT',self.SteadyOp_window)
+        self.fftbutton.move(20,60)
         self.fftbutton.setFont(self.font)
         self.fftbutton.clicked.connect(self.FFT_analysis)
         
+        self.textbox = QLineEdit(self.SteadyOp_window)
+        self.textbox.move(20, 100)
+        self.textbox.resize(280,40)
+        
         #brings up window
-        self.Xcorr_window.show()
+        self.SteadyOp_window.show()
         
         #display results
         l1 = QLabel()
@@ -244,7 +248,11 @@ class HEAT_PIPE_GUI():
         l1.setText("Hello World")
         l4.setText("TutorialsPoint")
         l2.setText("welcome to Python GUI Programming")
+        self.textbox.insert(l1.text())
+        self.textbox.setFont(self.font)
+ 
         
+
     def direcSelection(self):
         self.outdirec = QFileDialog.getExistingDirectory()
         
@@ -305,6 +313,9 @@ class HEAT_PIPE_GUI():
         
         self.progresswindow.close()
         
+        
+    def Xcorr_run(self):
+        print('Running PIV Xcorr Analysis\n')
         
     def CNN_run(self):
         print('Running PIV Neural Net Analysis\n')
